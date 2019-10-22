@@ -29,8 +29,16 @@ Research work will start from GFS and HDFS because these projects are open-sourc
    - Periodically communicates with chunkservers in HeartBeat messages to give instructions and collect state
 
  - Chunkserver
+   - Chunk size is 64MB.
 
  - Client
+   - First, using the ﬁxed chunk size, the client translates the ﬁle name and byte oﬀset speciﬁed by the application into a chunk index within the ﬁle. Then, it sends the master a request containing the ﬁle name and chunk index. The master replies with the corresponding chunk handle and locations of the replicas. The client caches this information using the ﬁle name and chunk index as the key. 
+
+ - Operation log
+   - The operation log contains a historical record of critical metadata changes
+   - The master checkpoints its state whenever the log grows beyond a certain size.
+
+#### Consistency
 
 ### Hadoop Distributed File System ('HDFS')
 
