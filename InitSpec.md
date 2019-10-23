@@ -38,7 +38,11 @@ Research work will start from GFS and HDFS because these projects are open-sourc
    - The operation log contains a historical record of critical metadata changes
    - The master checkpoints its state whenever the log grows beyond a certain size.
 
-#### Consistency
+#### Key guarantees
+1. File namespace is atomic and correct.
+2. File content is consistent. Identify by defined and undefined data mutation state. Know stale chunks by chunk version number. Implement timeout for client-side chunk caches.
+3. Detect component failure by regular handshakes and file corruption by checksumming.
+
 
 ### Hadoop Distributed File System ('HDFS')
 
